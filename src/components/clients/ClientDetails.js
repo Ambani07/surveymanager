@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -8,10 +9,59 @@ import Spinner from '../layout/Spinner'
 import classnames from 'classnames'
 
 class ClientDetails extends Component {
-  render() {
-    //get client
-    const { client } = this.props
+  state = {
+    showBalanceUpdate: false, //show form
+    balanceUpdateAmount: ''
+  }
 
+  balanceSubmit = e => {
+    e.preventDefault()
+    const { client, firestore } = this.props
+    const { balanceUpdateAmount } = this.state
+
+    const clientUpdate = {
+      balance: parseFloat(balanceUpdateAmount)
+    }
+
+    //update in firestore
+    firestore.update({ collection: 'clients', doc: client.id }, clientUpdate)
+    // console.log(this.state.balanceUpdateAmount)
+  }
+  onChange = e => this.setState({ [e.target.name]: e.target.value })
+  render() {
+    //get client from properties
+    const { client } = this.props
+    const { showBalanceUpdate, balanceUpdateAmount } = this.state
+
+    //store form
+    let balanceForm = ''
+    //If balance form should display
+    if (showBalanceUpdate) {
+      //construct form
+      balanceForm = (
+        <form onSubmit={this.balanceSubmit}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              name="balanceUpdateAmount"
+              placeholder="Add New Balance"
+              value={balanceUpdateAmount}
+              onChange={this.onChange}
+            />
+            <div className="input-group-append">
+              <input
+                type="submit"
+                value="Update"
+                className="btn btn-outline-dark"
+              />
+            </div>
+          </div>
+        </form>
+      )
+    } else {
+      balanceForm = null
+    }
     if (client) {
       return (
         <div>
@@ -53,8 +103,20 @@ class ClientDetails extends Component {
                       })}>
                       R{parseFloat(client.balance).toFixed(2)}
                     </span>
+                    <small>
+                      <a
+                        href="#!"
+                        onClick={() =>
+                          this.setState({
+                            showBalanceUpdate: !this.state.showBalanceUpdate
+                          })
+                        }>
+                        <i className="fa fa-pencil-alt"></i>{' '}
+                      </a>
+                    </small>
                   </h3>
                   {/* @todo -balance form */}
+                  {balanceForm}
                 </div>
               </div>
 
