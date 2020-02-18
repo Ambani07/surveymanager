@@ -14,6 +14,7 @@ class ClientDetails extends Component {
     balanceUpdateAmount: ''
   }
 
+  // Update balance
   balanceSubmit = e => {
     e.preventDefault()
     const { client, firestore } = this.props
@@ -25,8 +26,18 @@ class ClientDetails extends Component {
 
     //update in firestore
     firestore.update({ collection: 'clients', doc: client.id }, clientUpdate)
-    // console.log(this.state.balanceUpdateAmount)
   }
+
+  //Delete Click
+  onDeleteClick = e => {
+    const { client, firestore, history } = this.props
+
+    firestore
+      .delete({ collection: 'clients', doc: client.id })
+      .then(history.push('/'))
+  }
+
+  //On Form Input
   onChange = e => this.setState({ [e.target.name]: e.target.value })
   render() {
     //get client from properties
@@ -76,7 +87,9 @@ class ClientDetails extends Component {
                 <Link to={`/client/edit/${client.id}`} className="btn btn-dark">
                   Edit
                 </Link>
-                <button className="btn btn-danger">Delete</button>
+                <button onClick={this.onDeleteClick} className="btn btn-danger">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -115,7 +128,7 @@ class ClientDetails extends Component {
                       </a>
                     </small>
                   </h3>
-                  {/* @todo -balance form */}
+                  {/* Show balance update form */}
                   {balanceForm}
                 </div>
               </div>
