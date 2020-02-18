@@ -11,6 +11,7 @@ import {
 import { rrfProps, store } from './store/store'
 
 import Clients from './components/clients/Clients'
+import AddClients from './components/clients/AddClients'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
@@ -27,6 +28,10 @@ class App extends Component {
               <BrowserRouter>
                 <Switch>
                   <Route exact path="/" component={Clients}></Route>
+                  <Route
+                    exact
+                    path="/client/add"
+                    component={AddClients}></Route>
                   {/* <Route exact path="/test" component={Test}></Route> */}
                   {/* <Route component={NotFound}></Route> */}
                 </Switch>
