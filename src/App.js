@@ -13,6 +13,7 @@ import { rrfProps, store } from './store/store'
 import AppNavbar from './components/layout/AppNavbar'
 import Clients from './components/clients/Clients'
 import AddClients from './components/clients/AddClients'
+import EditClient from './components/clients/EditClient'
 import ClientDetails from './components/clients/ClientDetails'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -40,6 +41,10 @@ class App extends Component {
                     exact
                     path="/client/:id"
                     component={ClientDetails}></Route>
+                  <Route
+                    exact
+                    path="/client/edit/:id"
+                    component={EditClient}></Route>
                 </Switch>
               </div>
             </BrowserRouter>
