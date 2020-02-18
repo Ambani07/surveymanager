@@ -46,6 +46,10 @@ class Clients extends Component {
                 <span className="text-primary">
                   ${parseFloat(totalOwed).toFixed(2)}
                 </span>
+                <Link to="/client/add" className="btn btn-success ml-2">
+                  <i className="fa fa-add"></i>
+                  New
+                </Link>
               </h5>
             </div>
           </div>
