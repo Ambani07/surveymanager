@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { Provider } from 'react-redux'
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  BrowserRouter
-} from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
 import { rrfProps, store } from './store/store'
 
 import AppNavbar from './components/layout/AppNavbar'
+// Clients CRUD
 import Clients from './components/clients/Clients'
 import AddClients from './components/clients/AddClients'
 import EditClient from './components/clients/EditClient'
 import ClientDetails from './components/clients/ClientDetails'
 
+// Products CRUD
+import Products from './components/products/Products'
+import ProductDetails from './components/products/ProductDetails'
+
+// CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
@@ -33,6 +34,7 @@ class App extends Component {
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={Clients}></Route>
+                  {/* Client Routes */}
                   <Route
                     exact
                     path="/client/add"
@@ -45,6 +47,12 @@ class App extends Component {
                     exact
                     path="/client/edit/:id"
                     component={EditClient}></Route>
+                  {/* Product Routes */}
+                  <Route exact path="/products" component={Products}></Route>
+                  <Route
+                    exact
+                    path="/product/:id"
+                    component={ProductDetails}></Route>
                 </Switch>
               </div>
             </BrowserRouter>
