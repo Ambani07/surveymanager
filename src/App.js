@@ -18,7 +18,7 @@ import ClientDetails from './components/clients/ClientDetails'
 import Quiz from './components/products/quiz/Quiz'
 
 //Page Not Found
-import NotFound from './components/notfound'
+import NotFound from './components/notfound/NotFound'
 
 // Products CRUD
 import Products from './components/products/Products'
