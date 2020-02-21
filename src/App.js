@@ -6,11 +6,19 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { rrfProps, store } from './store/store'
 
 import AppNavbar from './components/layout/AppNavbar'
-// Clients CRUD
+
+// APPLICATION COMPONENTS
+//Client CRUD
 import Clients from './components/clients/Clients'
 import AddClients from './components/clients/AddClients'
 import EditClient from './components/clients/EditClient'
 import ClientDetails from './components/clients/ClientDetails'
+
+//Quiz
+import Quiz from './components/products/quiz/Quiz'
+
+//Page Not Found
+import NotFound from './components/notfound/NotFound'
 
 // Products CRUD
 import Products from './components/products/Products'
@@ -53,6 +61,13 @@ class App extends Component {
                     exact
                     path="/product/:id"
                     component={ProductDetails}></Route>
+                  {/* Quiz Routes */}
+                  <Route
+                    exact
+                    path="/product/quiz/start"
+                    component={Quiz}></Route>
+                  {/* Page Not Found */}
+                  <Route component={NotFound}></Route>
                 </Switch>
               </div>
             </BrowserRouter>

@@ -17,7 +17,8 @@ class Clients extends Component {
     if (clients) {
       // Add balances
       const total = clients.reduce((total, client) => {
-        return total + parseFloat(client.balance.toString())
+        // return total + parseFloat(client.balance.toString())
+        return total
       }, 0)
 
       return { totalOwed: total }
