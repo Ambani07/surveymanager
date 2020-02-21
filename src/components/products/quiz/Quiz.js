@@ -1,41 +1,47 @@
+//React
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+//Firebase
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+
+//Components
+import Ages from '../ages/Ages'
 
 class Quiz extends Component {
-  state = {
-    Quiz: {
-      title: 'How old are you'
-    },
-    selectedOptons: []
-  }
-
   render() {
-    const { Quiz } = this.state
     return (
       // <div className="row">
 
       <div>
-        <Link to="/">
+        <Link to="/" className="btn btn-primary">
           <i className="fa fa-arrow-circle-left "></i>
         </Link>
         <div className="header">
           {/* <div className="overlay"></div> */}
-          <div className="w-100 text-white">
-            <h1 className="display-3 videoHeader text-center">{Quiz.title}</h1>
-            <p className="lead mb-0 text-center">Possble Answer </p>
-            {/* loop through questions for Prudct */}
-
-            <Link
-              to="/product/quiz/start"
-              className="btn btn-info btn-block mt-3">
-              continue
-              <i className="fa fa-arrow-right ml-2"></i>
-            </Link>
+          <div className="w-100 text-dark">
+            <div className="text-center">
+              <Ages />
+              <Link
+                to="/product/quiz/start"
+                className="btn btn-info btn-block mt-3">
+                continue
+                <i className="fa fa-arrow-right ml-2"></i>
+              </Link>
+            </div>
           </div>
-        </div>{' '}
+        </div>
+        {/* loop through questions for Prudct */}
       </div>
     )
   }
 }
 
 export default Quiz
+// export default compose(
+//   firestoreConnect([{ collection: 'products' }]),
+//   connect((state, props) => ({ products: state.firestore.ordered.products }))
+// )(Quiz)

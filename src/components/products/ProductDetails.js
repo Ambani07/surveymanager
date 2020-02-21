@@ -10,7 +10,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 
 //Components
 import ProductStats from './ProductStats'
-import Quiz from './Quiz'
 import Spinner from '../layout/Spinner'
 
 //CSS
