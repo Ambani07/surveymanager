@@ -64,7 +64,7 @@ class App extends Component {
                   {/* Quiz Routes */}
                   <Route
                     exact
-                    path="/product/quiz/start"
+                    path="/product/:id/quiz"
                     component={Quiz}></Route>
                   {/* Page Not Found */}
                   <Route component={NotFound}></Route>

@@ -41,7 +41,7 @@ class ProductDetails extends Component {
                     </div>
                     <div className="col-md-6">
                       <Link
-                        to="/product/quiz/start"
+                        to={`/product/${product.id}/quiz`}
                         className="btn btn-info btn-block mt-3">
                         <i className="fa fa-add"></i>
                         Start Quiz

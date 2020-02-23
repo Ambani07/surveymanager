@@ -13,14 +13,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import Spinner from '../../layout/Spinner'
 
 class Ages extends Component {
-  state = { ageGroup: '' }
-
-  onAgeGroup = (e, id) => {
-    this.setState({
-      ageGroup: id
-    })
-    console.log(this.state.ageGroup)
-  }
   //Delete Click
   render() {
     const { ages } = this.props
@@ -33,9 +25,9 @@ class Ages extends Component {
           {ages.map(age => (
             <button
               key={age.id}
-              // to="/product/quiz/start"
+              to={`/product/quiz/{$age}start`}
               className="btn btn-outline-primary m-5"
-              onClick={e => this.onAgeGroup.bind(this, age.id)}>
+              onClick={e => this.props.onAgeSelect(age.id)}>
               {age.title}
               <i className="fa fa-times-circle ml-2"></i>
             </button>
@@ -63,8 +55,3 @@ export default compose(
     ages: state.firestore.ordered.ages
   }))
 )(Ages)
-
-// export default compose(
-//     firestoreConnect([{ collection: 'products' }]),
-//     connect((state, props) => ({ products: state.firestore.ordered.products }))
-//   )(Products)
