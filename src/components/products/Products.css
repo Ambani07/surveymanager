@@ -32,13 +32,13 @@
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: #0073E4;
+    /* background-color: #0073E4; */
     opacity: 0.5;
     z-index: 1;
   }
 
   .videoHeader, .category{
-    background-color: #0073E4 !important;
+    /* background-color: #0073E4 !important; */
     opacity: 0.7;
     margin: 0;
   }
