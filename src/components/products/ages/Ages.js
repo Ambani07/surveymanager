@@ -14,13 +14,8 @@ import Spinner from '../../layout/Spinner'
 
 class Ages extends Component {
   state = { ageGroup: '' }
-  constructor(props) {
-    super(props)
-    // This binding is necessary to make `this` work in the callback
-    this.onAgeGroup = this.onAgeGroup.bind(this)
-  }
 
-  onAgeGroup = (id, e) => {
+  onAgeGroup = (e, id) => {
     this.setState({
       ageGroup: id
     })
@@ -40,7 +35,7 @@ class Ages extends Component {
               key={age.id}
               // to="/product/quiz/start"
               className="btn btn-outline-primary m-5"
-              onClick={e => this.onAgeGroup(age.id, e)}>
+              onClick={e => this.onAgeGroup.bind(this, age.id)}>
               {age.title}
               <i className="fa fa-times-circle ml-2"></i>
             </button>

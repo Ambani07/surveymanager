@@ -1,12 +1,6 @@
 //React
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-
-//Firebase
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
 
 //Components
 import Ages from '../ages/Ages'
@@ -41,7 +35,3 @@ class Quiz extends Component {
 }
 
 export default Quiz
-// export default compose(
-//   firestoreConnect([{ collection: 'products' }]),
-//   connect((state, props) => ({ products: state.firestore.ordered.products }))
-// )(Quiz)

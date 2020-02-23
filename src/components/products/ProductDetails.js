@@ -17,7 +17,7 @@ import './Products.css'
 class ProductDetails extends Component {
   image(image) {
     if (image) {
-      return <img class="card-img-top" src={image} alt="" />
+      return <img className="card-img-top" src={image} alt="" />
     } else {
       return <Spinner />
     }
@@ -32,7 +32,7 @@ class ProductDetails extends Component {
             {this.image(product.image)}
             <div className="container h-100">
               <div className="d-flex h-100 text-center align-items-center">
-                <div className="w-100 text-white">
+                <div className="w-100 text-dark">
                   <h1 className="display-3 videoHeader">{product.name}</h1>
                   <p className="lead mb-0 category">{product.category}</p>
                   <div className="row">
