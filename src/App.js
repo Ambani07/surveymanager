@@ -52,38 +52,45 @@ class App extends Component {
                   <Route
                     exact
                     path="/"
-                    component={UserIsAuthenticated(Dashboard)}></Route>
+                    component={UserIsAuthenticated(Dashboard)}
+                  />
                   {/* Auth */}
-                  <Route exact path="/login" component={UserIsNotAuthenticated(Login)}></Route>
+                  <Route
+                    exact
+                    path="/login"
+                    component={UserIsNotAuthenticated(Login)}
+                  />
                   {/* Client Routes */}
                   <Route
                     exact
                     path="/client/add"
-                    component={UserIsAuthenticated(AddClients)}></Route>
+                    component={UserIsAuthenticated(AddClients)}
+                  />
                   <Route
                     exact
                     path="/client/:id"
-                    component={UserIsAuthenticated(ClientDetails)}></Route>
-                  <Route
-                    exact
-                    path="/client/edit/:id"
-                    component={EditClient}></Route>
+                    component={UserIsAuthenticated(ClientDetails)}
+                  />
+                  <Route exact path="/client/edit/:id" component={EditClient} />
                   {/* Product Routes */}
                   <Route
                     exact
                     path="/products"
-                    component={UserIsAuthenticated(Products)}></Route>
+                    component={UserIsAuthenticated(Products)}
+                  />
                   <Route
                     exact
                     path="/product/:id"
-                    component={UserIsAuthenticated(ProductDetails)}></Route>
+                    component={UserIsAuthenticated(ProductDetails)}
+                  />
                   {/* Quiz Routes */}
                   <Route
                     exact
                     path="/product/:id/quiz"
-                    component={UserIsAuthenticated(Quiz)}></Route>
+                    component={UserIsAuthenticated(Quiz)}
+                  />
                   {/* Page Not Found */}
-                  <Route component={UserIsAuthenticated(NotFound)}></Route>
+                  <Route component={UserIsAuthenticated(NotFound)} />
                 </Switch>
               </div>
             </BrowserRouter>

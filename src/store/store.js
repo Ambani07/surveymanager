@@ -7,6 +7,9 @@ import { createFirestoreInstance, firestoreReducer } from 'redux-firestore' // <
 import { firebaseConfig as fbConfig } from '../config'
 import { answers } from '../reducers/possibleAnswers-reducer'
 
+//Reducers
+import notifyReducer from '../reducers/notifyReducers'
+
 // react-redux-firebase config
 export const rrfConfig = {
   userProfile: 'users',
@@ -23,7 +26,8 @@ firebase.firestore() // <- needed if using firestore
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  selectedAnswers: answers
+  selectedAnswers: answers,
+  notify: notifyReducer
 })
 
 // Create store with reducers and initial state

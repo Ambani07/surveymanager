@@ -18,7 +18,7 @@ import Spinner from '../../layout/Spinner'
 import Answer from './Answer'
 
 //Actions
-import * as actions from '../../../actions'
+import * as actions from '../../../actions/types'
 
 class PossibleAnswers extends Component {
   state = {
