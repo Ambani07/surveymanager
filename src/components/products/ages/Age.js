@@ -4,7 +4,7 @@ import Spinner from '../../layout/Spinner'
 
 export default class Age extends Component {
   render() {
-    const { age, onAgeGroup } = this.props
+    const { age } = this.props
     if (age) {
       return (
         <div>

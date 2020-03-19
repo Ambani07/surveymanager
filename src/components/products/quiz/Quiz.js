@@ -55,14 +55,7 @@ class Quiz extends Component {
     } else {
       return (
         <div>
-          <PossibleAnswers
-            product={product}
-            onSelectPossibleAnswers={this.onSelectPossibleAnswers.bind(this)}
-          />
-          <button type="button" className="btn btn-dark btn-block">
-            continue
-            <i className="fa fa-arrow-right ml-2"></i>
-          </button>
+          <PossibleAnswers key={product.id} product={product} playerAge={age} />
         </div>
       )
     }
