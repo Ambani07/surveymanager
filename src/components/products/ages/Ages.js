@@ -18,27 +18,26 @@ class Ages extends Component {
     const { ages } = this.props
     if (ages) {
       return (
-        <div>
+        <React.Fragment>
           <h1 className="display-3 videoHeader text-center p-5">
             Hey there!...Before we get started, how old are you?
           </h1>
           {ages.map(age => (
             <button
               key={age.id}
-              to={`/product/quiz/{$age}start`}
               className="btn btn-outline-primary m-5"
               onClick={e => this.props.onAgeSelect(age.id)}>
               {age.title}
               <i className="fa fa-times-circle ml-2"></i>
             </button>
           ))}
-        </div>
+        </React.Fragment>
       )
     } else {
       return (
-        <div>
+        <React.Fragment>
           <Spinner />
-        </div>
+        </React.Fragment>
       )
     }
   }
