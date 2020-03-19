@@ -19,7 +19,7 @@ class Answer extends Component {
     // this.props.selectedClickedHandler(answer)
     // selectedAnswers({ type: 'ADD_ANSWER', payload: answer })
     // this.props.selectedAnswers({})
-    console.log(answer)
+    // console.log(answer)
   }
   render() {
     const { answer, selectedAnswers } = this.props

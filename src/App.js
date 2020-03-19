@@ -3,16 +3,24 @@ import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
 import { Provider } from 'react-redux'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 
+import { UserIsAuthenticated, UserIsNotAuthenticated } from './helpers/auth'
+
 import { rrfProps, store } from './store/store'
 
 import AppNavbar from './components/layout/AppNavbar'
 
 // APPLICATION COMPONENTS
+//DASHBOARD
+import Dashboard from './components/layout/Dashboard'
+
 //Client CRUD
 import Clients from './components/clients/Clients'
 import AddClients from './components/clients/AddClients'
 import EditClient from './components/clients/EditClient'
 import ClientDetails from './components/clients/ClientDetails'
+
+//Auth
+import Login from './components/auth/Login'
 
 //Quiz
 import Quiz from './components/products/quiz/Quiz'
@@ -41,33 +49,41 @@ class App extends Component {
               <AppNavbar />
               <div className="container">
                 <Switch>
-                  <Route exact path="/" component={Clients}></Route>
+                  <Route
+                    exact
+                    path="/"
+                    component={UserIsAuthenticated(Dashboard)}></Route>
+                  {/* Auth */}
+                  <Route exact path="/login" component={UserIsNotAuthenticated(Login)}></Route>
                   {/* Client Routes */}
                   <Route
                     exact
                     path="/client/add"
-                    component={AddClients}></Route>
+                    component={UserIsAuthenticated(AddClients)}></Route>
                   <Route
                     exact
                     path="/client/:id"
-                    component={ClientDetails}></Route>
+                    component={UserIsAuthenticated(ClientDetails)}></Route>
                   <Route
                     exact
                     path="/client/edit/:id"
                     component={EditClient}></Route>
                   {/* Product Routes */}
-                  <Route exact path="/products" component={Products}></Route>
+                  <Route
+                    exact
+                    path="/products"
+                    component={UserIsAuthenticated(Products)}></Route>
                   <Route
                     exact
                     path="/product/:id"
-                    component={ProductDetails}></Route>
+                    component={UserIsAuthenticated(ProductDetails)}></Route>
                   {/* Quiz Routes */}
                   <Route
                     exact
                     path="/product/:id/quiz"
-                    component={Quiz}></Route>
+                    component={UserIsAuthenticated(Quiz)}></Route>
                   {/* Page Not Found */}
-                  <Route component={NotFound}></Route>
+                  <Route component={UserIsAuthenticated(NotFound)}></Route>
                 </Switch>
               </div>
             </BrowserRouter>
