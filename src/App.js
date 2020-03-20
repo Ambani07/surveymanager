@@ -14,7 +14,7 @@ import AppNavbar from './components/layout/AppNavbar'
 import Dashboard from './components/layout/Dashboard'
 
 //Client CRUD
-import Clients from './components/clients/Clients'
+// import Clients from './components/clients/Clients'
 import AddClients from './components/clients/AddClients'
 import EditClient from './components/clients/EditClient'
 import ClientDetails from './components/clients/ClientDetails'
@@ -32,6 +32,7 @@ import NotFound from './components/notfound/NotFound'
 // Products CRUD
 import Products from './components/products/Products'
 import ProductDetails from './components/products/ProductDetails'
+import AddProduct from './components/products/AddProduct'
 
 //App Settings
 import Settings from './components/settings/Settings'
@@ -74,6 +75,11 @@ class App extends Component {
                     exact
                     path="/products"
                     component={UserIsAuthenticated(Products)}
+                  />
+                  <Route
+                    exact
+                    path="/product/add"
+                    component={UserIsAuthenticated(AddProduct)}
                   />
                   <Route
                     exact
