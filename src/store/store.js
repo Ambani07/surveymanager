@@ -5,11 +5,11 @@ import { createStore, combineReducers } from 'redux'
 import { firebaseReducer } from 'react-redux-firebase'
 import { createFirestoreInstance, firestoreReducer } from 'redux-firestore' // <- needed if using firestore
 import { firebaseConfig as fbConfig } from '../config'
-import { answers } from '../reducers/possibleAnswers-reducer'
 
 //Reducers
 import notifyReducer from '../reducers/notifyReducers'
 import settingsReducer from '../reducers/settingsReducer'
+import answersReducers from '../reducers/answersReducers'
 
 // react-redux-firebase config
 export const rrfConfig = {
@@ -27,9 +27,9 @@ firebase.firestore() // <- needed if using firestore
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  selectedAnswers: answers,
   notify: notifyReducer,
-  settings: settingsReducer
+  settings: settingsReducer,
+  answers: answersReducers
 })
 
 //check for settings and localstorage
