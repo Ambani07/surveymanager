@@ -8,10 +8,18 @@ import { firebaseConnect } from 'react-redux-firebase'
 import { notifyUser } from '../../actions/notifyActions'
 import Alert from '../layout/Alert'
 
-class Login extends Component {
+class Register extends Component {
   state = {
     email: '',
     password: ''
+  }
+
+  componentWillMount() {
+    const { allowRegistration } = this.props.settings
+
+    if (!allowRegistration) {
+      this.props.history.push('/')
+    }
   }
 
   onSubmit = e => {
@@ -20,11 +28,13 @@ class Login extends Component {
     const { firebase, notifyUser } = this.props
     const { email, password } = this.state
 
+    //Register with firebase
     firebase
-      .login({ email: email, password: password })
-      .catch(err => notifyUser('Invalid login details!...', 'error'))
+      .createUser({ email, password })
+      .catch(err => notifyUser('Username already exits', 'error'))
   }
 
+  //change state when user enter's on the form
   onChange = e => this.setState({ [e.target.name]: e.target.value })
 
   render() {
@@ -39,7 +49,7 @@ class Login extends Component {
               ) : null}
               <h1 className="text-center pd-4 pt-3">
                 <span className="text-primary">
-                  <i className="fa fa-lock" /> Login
+                  <i className="fa fa-lock" /> Register
                 </span>
               </h1>
               <form onSubmit={this.onSubmit}>
@@ -67,7 +77,7 @@ class Login extends Component {
                 </div>
                 <input
                   type="submit"
-                  value="Login"
+                  value="Register"
                   className="btn btn-primary btn-block"
                 />
               </form>
@@ -79,7 +89,7 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
+Register.propTypes = {
   firebase: PropTypes.object.isRequired,
   notify: PropTypes.object.isRequired,
   notifyUser: PropTypes.func.isRequired
@@ -89,8 +99,9 @@ export default compose(
   firebaseConnect(),
   connect(
     (state, props) => ({
-      notify: state.notify
+      notify: state.notify,
+      settings: state.settings
     }),
     { notifyUser }
   )
-)(Login)
+)(Register)

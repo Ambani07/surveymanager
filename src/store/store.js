@@ -9,6 +9,7 @@ import { answers } from '../reducers/possibleAnswers-reducer'
 
 //Reducers
 import notifyReducer from '../reducers/notifyReducers'
+import settingsReducer from '../reducers/settingsReducer'
 
 // react-redux-firebase config
 export const rrfConfig = {
@@ -27,11 +28,27 @@ const rootReducer = combineReducers({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   selectedAnswers: answers,
-  notify: notifyReducer
+  notify: notifyReducer,
+  settings: settingsReducer
 })
 
-// Create store with reducers and initial state
-const initialState = {}
+//check for settings and localstorage
+if (localStorage.getItem('settings') == null) {
+  //Default settings
+  const defaultSettings = {
+    disableBalanceOnAdd: true,
+    disableBalanceOnEdit: false,
+    allowRegistration: false
+  }
+
+  //set to localStorage
+  localStorage.setItem('settings', JSON.stringify(defaultSettings))
+}
+
+// Create initial state
+const initialState = { settings: JSON.parse(localStorage.getItem('settings')) }
+
+//create store
 export const store = createStore(
   rootReducer,
   initialState,
