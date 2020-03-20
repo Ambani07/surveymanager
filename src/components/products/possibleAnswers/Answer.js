@@ -6,24 +6,26 @@ import PropTypes from 'prop-types'
 //Firebase
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
+import { firebaseConnect } from 'react-redux-firebase'
 
 //Components
 import Spinner from '../../layout/Spinner'
+
+//Actions
+import { addAnswer } from '../../../actions/answersActions'
 class Answer extends Component {
   state = {
     clickedButton: false
   }
-  // selectClickHandler = (answer, dispatch,  e) => {
-  selectClickHandler = (answer, selectedAnswers, e) => {
-    // this.props.selectedClickedHandler(answer)
-    // selectedAnswers({ type: 'ADD_ANSWER', payload: answer })
-    // this.props.selectedAnswers({})
-    // console.log(answer)
+
+  selectClickHandler = (answer, e) => {
+    const { addAnswer } = this.props
+
+    addAnswer(answer)
     this.setState({ clickedButton: !this.state.clickedButton })
   }
   render() {
-    const { answer, selectedAnswers } = this.props
+    const { answer } = this.props
     const { clickedButton } = this.state
     if (answer) {
       return (
@@ -34,11 +36,7 @@ class Answer extends Component {
                 ? 'btn btn-primary m-5'
                 : 'btn btn-outline-primary m-5'
             }
-            onClick={this.selectClickHandler.bind(
-              this,
-              answer,
-              selectedAnswers
-            )}>
+            onClick={this.selectClickHandler.bind(this, answer)}>
             {answer.title}
             <i className="fa fa-times-circle ml-2"></i>
           </button>
@@ -50,15 +48,17 @@ class Answer extends Component {
   }
 }
 
-// const mapStateToProps = props => {
-//   return {
-//     selectedAnswers: props.selectedAnswers.answers
-//   }
-// }
-
 Answer.propTypes = {
-  answer: PropTypes.object.isRequired
-  // selectedClickedHandler: PropTypes.func.isRequired
+  answer: PropTypes.object.isRequired,
+  addAnswer: PropTypes.func.isRequired
 }
 
-export default Answer
+export default compose(
+  firebaseConnect(),
+  connect(
+    (state, props) => ({
+      answers: state.answers
+    }),
+    { addAnswer }
+  )
+)(Answer)
