@@ -21,6 +21,7 @@ import ClientDetails from './components/clients/ClientDetails'
 
 //Auth
 import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 //Quiz
 import Quiz from './components/products/quiz/Quiz'
@@ -32,6 +33,8 @@ import NotFound from './components/notfound/NotFound'
 import Products from './components/products/Products'
 import ProductDetails from './components/products/ProductDetails'
 
+//App Settings
+import Settings from './components/settings/Settings'
 // CSS
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
@@ -53,12 +56,6 @@ class App extends Component {
                     exact
                     path="/"
                     component={UserIsAuthenticated(Dashboard)}
-                  />
-                  {/* Auth */}
-                  <Route
-                    exact
-                    path="/login"
-                    component={UserIsNotAuthenticated(Login)}
                   />
                   {/* Client Routes */}
                   <Route
@@ -88,6 +85,22 @@ class App extends Component {
                     exact
                     path="/product/:id/quiz"
                     component={UserIsAuthenticated(Quiz)}
+                  />
+                  <Route
+                    exact
+                    path="/settings"
+                    component={UserIsAuthenticated(Settings)}
+                  />
+                  {/* Auth */}
+                  <Route
+                    exact
+                    path="/login"
+                    component={UserIsNotAuthenticated(Login)}
+                  />
+                  <Route
+                    exact
+                    path="/register"
+                    component={UserIsNotAuthenticated(Register)}
                   />
                   {/* Page Not Found */}
                   <Route component={UserIsAuthenticated(NotFound)} />

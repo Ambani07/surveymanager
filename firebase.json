@@ -10,9 +10,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "jsconfig.json",
-      "cypress/**"
+      "**/node_modules/**"
     ],
     "rewrites": [
       {
@@ -20,5 +18,9 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "firestore": {
+    "rules": "Y",
+    "indexes": "firestore.indexes.json"
   }
 }

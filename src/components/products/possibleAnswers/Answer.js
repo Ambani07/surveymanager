@@ -20,6 +20,7 @@ class Answer extends Component {
     // selectedAnswers({ type: 'ADD_ANSWER', payload: answer })
     // this.props.selectedAnswers({})
     // console.log(answer)
+    this.setState({ clickedButton: !this.state.clickedButton })
   }
   render() {
     const { answer, selectedAnswers } = this.props
