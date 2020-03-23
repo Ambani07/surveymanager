@@ -26,6 +26,9 @@ import Register from './components/auth/Register'
 //Quiz
 import Quiz from './components/products/quiz/Quiz'
 
+//Answers
+import AddAnswers from './components/answers/AddAnswers'
+
 //Page Not Found
 import NotFound from './components/notfound/NotFound'
 
@@ -91,6 +94,12 @@ class App extends Component {
                     exact
                     path="/product/:id/quiz"
                     component={UserIsAuthenticated(Quiz)}
+                  />
+                  {/* Answers Routes */}
+                  <Route
+                    exact
+                    path="/product/:id/answers/add"
+                    component={UserIsAuthenticated(AddAnswers)}
                   />
                   <Route
                     exact

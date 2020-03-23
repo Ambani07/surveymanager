@@ -1,21 +1,31 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore' // <- needed if using firestore
-import { createStore, combineReducers } from 'redux'
-import { firebaseReducer } from 'react-redux-firebase'
-import { createFirestoreInstance, firestoreReducer } from 'redux-firestore' // <- needed if using firestore
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { firebaseReducer, getFirebase } from 'react-redux-firebase'
+import {
+  createFirestoreInstance,
+  firestoreReducer,
+  getFirestore
+} from 'redux-firestore' // <- needed if using firestore
 import { firebaseConfig as fbConfig } from '../config'
+
+//Middleware
+import thunk from 'redux-thunk'
 
 //Reducers
 import notifyReducer from '../reducers/notifyReducers'
 import settingsReducer from '../reducers/settingsReducer'
 import answersReducers from '../reducers/answersReducers'
+import createAnswer from './reducers/createAnswer'
 
 // react-redux-firebase config
 export const rrfConfig = {
   userProfile: 'users',
   useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
 }
+
+const middlewares = [thunk.withExtraArgument(getFirebase)]
 
 // Initialize firebase instance
 firebase.initializeApp(fbConfig)
@@ -29,7 +39,8 @@ const rootReducer = combineReducers({
   firestore: firestoreReducer,
   notify: notifyReducer,
   settings: settingsReducer,
-  answers: answersReducers
+  answers: createAnswer
+  // answers: answersReducers
 })
 
 //check for settings and localstorage
@@ -52,7 +63,10 @@ const initialState = { settings: JSON.parse(localStorage.getItem('settings')) }
 export const store = createStore(
   rootReducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk.withExtraArgument({ getFirestore })),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 )
 
 export const rrfProps = {
