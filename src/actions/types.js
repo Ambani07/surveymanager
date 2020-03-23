@@ -8,3 +8,4 @@ export const ALLOW_REGISTRATION = 'ALLOW_REGISTRATION'
 
 //answers types
 export const ADD_ANSWER = 'ADD_ANSWER'
+export const GET_ANSWER = 'GET_ANSWER'

@@ -36,15 +36,23 @@ class ProductDetails extends Component {
                   <h1 className="display-3 videoHeader">{product.name}</h1>
                   <p className="lead mb-0 category">{product.category}</p>
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                       <ProductStats />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                       <Link
                         to={`/product/${product.id}/quiz`}
                         className="btn btn-info btn-block mt-3">
                         <i className="fa fa-add"></i>
                         Start Quiz
+                      </Link>
+                    </div>
+                    <div className="col-md-4">
+                      <Link
+                        to={`/product/${product.id}/answers/add`}
+                        className="btn btn-info btn-block mt-3">
+                        <i className="fa fa-add"></i>
+                        Add Answers
                       </Link>
                     </div>
                   </div>
